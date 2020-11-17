@@ -12,5 +12,7 @@ Readme du projet NGS Marthe
 1) Raw RNA-seq data download. 
 --> Dowloading the data from the NCBI database. See the script **RNAseq_data_download.sh**
 --> Control of the quality of the reads using FASTQC function. See the script **fastqc.sh**
---> Assembly and comparison of all the FASTQC reports for all the sequences using MULTIQC function. See the script **multiqc.sh**
+--> Assembly and comparison of all the FASTQC quality reports for all the sequences using MULTIQC function. See the script **multiqc.sh**
 
+2) Data assembly
+--> Trinity
