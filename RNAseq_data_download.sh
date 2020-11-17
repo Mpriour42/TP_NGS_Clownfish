@@ -22,10 +22,13 @@ SRR7591069
 for A in $SRR
 do
 
-fastq-dump -X 10 $A 
+fastq-dump $A 
 
 # Rename sequence names, trinity need that their name ends with "/1" for R1 and "/2" for R2.
 
-# awk  '{ if (NR%2 == 1 ) {gsub("\\.","_");print $1"/1"}  else  { print $0}}' 
+awk  '{ if (NR%2 == 1 ) {gsub("\\.","_");print $1"/1"}  else  { print $0}}' $A.fastq > $A.fastq.modif
 
+mv $A.fastq.modif $A.fastq
+
+# To execute the script even when the machine isn't running use "nohup"
 done
