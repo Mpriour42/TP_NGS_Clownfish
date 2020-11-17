@@ -10,3 +10,4 @@ in the presence of iridophores in white skin.
 *Analyses steps*:
 1) Raw RNA-seq data download. See the script "RNAseq_data_download.sh"
 
+2) Data assembly
