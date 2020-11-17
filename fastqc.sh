@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Go in the working directory that stores the datas
+# Go in the working directory that stores the raw datas
 SRA_data="/home/rstudio/data/mydatalocal/data/SRA_data"
 cd $SRA_data
 
