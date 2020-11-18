@@ -6,7 +6,7 @@ Readme du projet NGS Marthe
 ![nemo](https://celebrationspress.com/wp-content/uploads/2017/11/112717Nemo.png)
 
 ## Problem of interest: 
-analysis of the fish skin transcriptome to find _saiyan_, a candidate gene involved in the presence of iridophores in white skin.
+analysis of the fish skin transcriptome to find _saiyan_, a candidate gene involved in the presence of iridophores in white skin. Reference paper: Salis, P, Lorin, T, Lewis, V, et al. Developmental and comparative transcriptomic identification of iridophore contribution to white barring in clownfish. _Pigment Cell Melanoma Res._ 2019; 32: 391– 402. https://doi.org/10.1111/pcmr.12766
 
 ## Data-set: 
 for each skin color (orange and white), 3 individuals have been sampled: 3x2 = 6 samples. Each sample has been sequenced using Illumina Single-End (50 bases reads).
