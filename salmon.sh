@@ -2,25 +2,31 @@
 
 ## This script use SALMON to determine for each transcripts assembled by TRINITY wheter it is more express in white skin or orange skin.
 
-#Create a working directory:
-data="/home/rstudio/data/mydatalocal/data"
-cd $data
+# Create a working directory:
+SRA_data="/home/rstudio/data/mydatalocal/data/SRA_data"
+cd $SRA_data
 
-#Create a new folder to store salmon datas
+# Create a new folder to store salmon datas
 mkdir -p data_salmon
 cd data_salmon
 
 # Index the transcriptome
-salmon index -t FASTA.fa -i trasncript_index
+salmon index -k 27 -t $SRA_data/SRA_data_trinity/Trinity.fasta -i $SRA_data/transcript_index 
 
 # Quantification
-fastq=$sra_data/*.fastq
+fastq=$SRA_data/*.fastq
 
 for f in $fastq
 do
 
-salmon quant -i $data/SRA_data_trinity/transcript_index \
--o /home/rstudio/data/mydatalocal/data/data_salmon -r $f
+# Rename the SRR without .fastq
+NewName=$(basename -s .fastq $f)
+
+salmon quant -gcBias -validateMappings -l SR -p 16 -i $SRA_data/SRA_data_trinity/transcript_index \
+-o $SRA_data/data_salmon/$NewName -r $f
+
+# $f: output write in a folder name as the treated fastq
+
 
 done
 
