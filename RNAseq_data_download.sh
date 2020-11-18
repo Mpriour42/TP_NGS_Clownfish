@@ -1,9 +1,11 @@
 #!/bin/bash
 
+## This script download RNAseq data from the SRA database
+
 # Create a working directory:
 data="/home/rstudio/data/mydatalocal/data"
-mkdir -p $data #Si le dossier existe déjà, il ne recrée pas de nouveau folder
-cd $data
+mkdir -p $data #If the folder already exists, it is not created again
+cd $data #We move to this directory
 
 # Create a directory where the data will be downloaded
 mkdir -p SRA_data
@@ -30,5 +32,8 @@ awk  '{ if (NR%2 == 1 ) {gsub("\\.","_");print $1"/1"}  else  { print $0}}' $A.f
 
 mv $A.fastq.modif $A.fastq
 
-# To execute the script even when the machine isn't running use "nohup"
 done
+
+# Give the editing rights to the script (only the 1st time) : chmod +x RNAseq_data_download
+# To execute the script even when the machine isn't running use "nohup" : nohup ./RNAseq_data_download.sh >& nohup.RNAseq_data_download &
+# See the advance/error of the running script by opening the file nohup.RNAseq_data_download
