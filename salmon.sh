@@ -11,7 +11,7 @@ mkdir -p data_salmon
 cd data_salmon
 
 # Index the transcriptome
-salmon index -k 27 -t $SRA_data/SRA_data_trinity/Trinity.fasta -i $SRA_data/transcript_index 
+salmon index -k 27 -t $SRA_data/SRA_data_trinity/Trinity.fasta -i $SRA_data/SRA_data_trinity/transcript_index 
 
 # Quantification
 fastq=$SRA_data/*.fastq
@@ -22,10 +22,10 @@ do
 # Rename the SRR without .fastq
 NewName=$(basename -s .fastq $f)
 
-salmon quant -gcBias -validateMappings -l SR -p 16 -i $SRA_data/SRA_data_trinity/transcript_index \
--o $SRA_data/data_salmon/$NewName -r $f
+salmon quant -l SR -r $f -p 16 -i $SRA_data/SRA_data_trinity/transcript_index \
+-o $SRA_data/data_salmon/$NewName --gcBias --validateMappings
 
-# $f: output write in a folder name as the treated fastq
+# $f: output write in a folder name as the treated fastq, for other options see SALMON documentation
 
 
 done
