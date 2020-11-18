@@ -3,7 +3,7 @@
 Readme du projet NGS Marthe 
 
 ## Specie: _Amphiprion ocellaris_ 
-IMAGE
+!(https://vignette.wikia.nocookie.net/disney/images/a/aa/Nemo-FN.png/revision/latest/scale-to-width-down/2000?cb=20160202205008)
 
 ## Problem of interest: 
 analysis of the fish skin transcriptome to find _saiyan_, a candidate gene involved in the presence of iridophores in white skin.
