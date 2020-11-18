@@ -8,7 +8,6 @@ cd $SRA_data
 
 # Create a new folder to store salmon datas
 mkdir -p data_salmon
-cd data_salmon
 
 # Index the transcriptome
 salmon index -k 27 -t $SRA_data/SRA_data_trinity/Trinity.fasta -i $SRA_data/SRA_data_trinity/transcript_index 
