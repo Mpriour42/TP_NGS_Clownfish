@@ -15,25 +15,25 @@ for each skin color (orange and white), 3 individuals have been sampled: 3x2 = 6
 ## Analyses steps:
 ### 1) Raw RNA-seq data download. 
 
-  * Dowloading the data from the NCBI database. See the script `RNAseq_data_download.sh`. We download fastq files stored in a SRA_data_folder.
+  * **Dowloading the data from the NCBI database**. See the script `RNAseq_data_download.sh`. We download fastq files stored in a SRA_data_folder.
   See the image below for an example of how a fastq file looks:
   ![fastq_example](fastq_example.PNG)
   
     One read is four lines, with the first line carrying the name of the read, the second line carrying the genetic code, the third line is the name again and the fourth is the ASCII code that informs on the reliability of the sequencing associated to each nucleotide.The "/1" after the name of the read indicade that the single read is sequenced as anti-sense (reverse(R)).
 
-  * Control of the quality of the reads using FASTQC function. See the script `fastqc.sh`. To better understand the fastq format and how to check the data quality, see the page: https://en.wikipedia.org/wiki/FASTQ_format/
+  * **Control of the quality of the reads using FASTQC function**. See the script `fastqc.sh`. To better understand the fastq format and how to check the data quality, see the page: https://en.wikipedia.org/wiki/FASTQ_format/
   
     For each file we obtained the basic statistics, per base sequence quality, per sequence quality scores, per base sequence content, per sequence GC content, per base N content, sequence lenght distribution, sequence duplication levels, overrepresented sequences and adapter content. 
   See the image below for an example of basic statistics for one file:
   
-  ![basics_statistics](basics_statistics.PNG)
+    ![basics_statistics](basics_statistics.PNG)
 
-  * Assembly and comparison of all the FASTQC quality reports for all the sequences using MULTIQC function. See the script `multiqc.sh`.The quality of the data is very good (see image below) so no need to clean them.
+  * **Assembly and comparison of all the FASTQC quality reports for all the sequences using MULTIQC function**. See the script `multiqc.sh`.The quality of the data is very good (see image below) so no need to clean them.
   ![fastqc_per_sequence_quality_scores_plot](fastqc_per_sequence_quality_scores_plot.png)
 
 
 ### 2) Data assembly
-  * Assemby of the reads using TRINITY. See the script `trinity.sh`. The reads are then assembled into a FASTA file. To get to know how to use trinity, see the page: https://github.com/trinityrnaseq/trinityrnaseq/wiki/Running-Trinity
+  * **Assemby of the reads using TRINITY**. See the script `trinity.sh`. The reads are then assembled into a FASTA file. To get to know how to use trinity, see the page: https://github.com/trinityrnaseq/trinityrnaseq/wiki/Running-Trinity
   
     See the image below for an example of how a fasta file looks:
   ![fasta_example](fasta_example.PNG)
@@ -42,7 +42,7 @@ for each skin color (orange and white), 3 individuals have been sampled: 3x2 = 6
 
 
 ### 3) Transcript expression quantification
-  * For each transcript, we determine with SALMON whether it is more express in white skin or orange skin. See the script `salmon.sh`. To get to know how to use salmon, see the page: https://salmon.readthedocs.io/en/latest/salmon.html
+  * **For each transcript, we determine with SALMON whether it is more express in white skin or orange skin**. See the script `salmon.sh`. To get to know how to use salmon, see the page: https://salmon.readthedocs.io/en/latest/salmon.html
   
 ### 4) Data annotation
-  * Recover proteomic data from our transcripts with TRANSDECODER, as coding regions are the most conserved sequences accross species and thus are already associated to a known function. See the script `transdecoder.sh`. To get to know how to use TansDecoder, see the page: https://github.com/TransDecoder/TransDecoder/wiki
+  * **Recover proteomic data from our transcripts with TRANSDECODER**, as coding regions are the most conserved sequences accross species and thus are already associated to a known function. See the script `transdecoder.sh`. To get to know how to use TansDecoder, see the page: https://github.com/TransDecoder/TransDecoder/wiki
