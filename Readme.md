@@ -18,6 +18,7 @@ for each skin color (orange and white), 3 individuals have been sampled: 3x2 = 6
   * Dowloading the data from the NCBI database. See the script `RNAseq_data_download.sh`. We download fastq files stored in a SRA_data_folder.
   See the image below for an example of how a fastq file looks:
   ![fastq_example](fastq_example.PNG)
+  
   One read is four lines, with the first line carrying the name of the read, the second line carrying the genetic code, the third line is the name again and the fourth is the ASCII code that informs on the reliability of the sequencing associated to each nucleotide.The "/1" after the name of the read indicade that the single read is sequenced as anti-sense (reverse(R)).
 
   * Control of the quality of the reads using FASTQC function. See the script `fastqc.sh`. To better understand the fastq format and how to check the data quality, see the page: https://en.wikipedia.org/wiki/FASTQ_format/
@@ -33,6 +34,7 @@ for each skin color (orange and white), 3 individuals have been sampled: 3x2 = 6
   * Assemby of the reads using TRINITY. See the script `trinity.sh`. The reads are then assembled into a FASTA file. To get to know how to use trinity, see the page: https://github.com/trinityrnaseq/trinityrnaseq/wiki/Running-Trinity
   See the image below for an example of how a fasta file looks:
   ![fasta_example](fasta_example.PNG)
+  
   The first line begin with ">" and indicate the name of the read, then follow the genetic code of the sequence. 
 
 
