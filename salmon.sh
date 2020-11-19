@@ -26,7 +26,6 @@ salmon quant -l SR -r $f -p 16 -i $SRA_data/SRA_data_trinity/transcript_index \
 
 # $f: output write in a folder name as the treated fastq, for other options see SALMON documentation
 
-
 done
 
 # Give the editing rights to the script (only the 1st time) : chmod +x salmon.sh
