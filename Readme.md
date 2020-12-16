@@ -43,8 +43,19 @@ For each skin color (orange and white), 3 individuals have been sampled: 3x2 = 6
 
 ### 3) Transcript expression quantification
   * **For each transcript, we determine with SALMON whether it is more express in white skin or orange skin**. See the script `salmon.sh`. To get to know how to use salmon, see the page: https://salmon.readthedocs.io/en/latest/salmon.html
+  IMAGE QUANT SALMON
   
 ### 4) Data annotation
   * **Recover proteomic data from our transcripts with TRANSDECODER**, as coding regions are the most conserved sequences accross species and thus are already associated to a known function. See the script `transdecoder.sh`. To get to know how to use TansDecoder, see the page: https://github.com/TransDecoder/TransDecoder/wiki
+  
+  script get_stegastes pour avoir le génome le plus proche pour le blast
+  
+  transdecoder.sh
+  
+  rename files de transdecoder
+  
+  blast
+  
+  DeSseq2.R
 
 Tuto DESeq: https://www.bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html
