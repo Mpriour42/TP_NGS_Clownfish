@@ -1,23 +1,23 @@
 #! /bin/bash
 
-## This script use TransDecoder to find the coding regions within the transcripts (fasta file output of trinity)
+data="/home/rstudio/data/mydatalocal/data"
+cd $data
 
-# Create a working directory:
-SRA_data="/home/rstudio/data/mydatalocal/data/SRA_data"
-cd $SRA_data
+#Create a folder to store the output of TransDecoder
+mkdir -p transdecoder_data
+cd transdecoder_data
 
-# Create a new folder to store transcoder datas
-mkdir -p data_transdecoder
+#Attention, transdecoder generates files in the current directory
+# Launch Transdecoder
+# Work in 2 or 3 steps (the second is facultative)
 
-# launch Transdecoder
-# Step 1: extract the long open reading frames
-TransDecoder.LongOrfs -t $SRA_data/SRA_data_trinity/Trinity.fasta -m ??? #m :By default, TransDecoder.LongOrfs will identify ORFs that are at least 100 amino acids long. You can lower this via the '-m' parameter, but know that the rate of false positive ORF predictions increases drastically with shorter minimum length criteria.
+# Step 1: extract the long open reading frames (TransDecoder.LongOrfs)
+TransDecoder.LongOrfs -t $data/SRA_data/SRA_data_trinity/Trinity.fasta -S --gene_trans_map $data/SRA_data/SRA_data_trinity/Trinity.fasta.gene_trans_map -O $data/transdecoder_data
 
-# Step 2 (facultative): identify ORFs with homology to known proteins via blast or pfam searches.
+# Step 2: blast to identify peptides with homology to known proteins (optionnal) 
 
-# Step 3: predict the likely coding regions
-TransDecoder.Predict -t $SRA_data/SRA_data_trinity/Trinity.fasta [ homology options ] \
---output_dir $data/data_transdecoder
+# Step 3: predict the likely coding regions (TransDecoder.Predict)
+TransDecoder.Predict -t $data/SRA_data/SRA_data_trinity/Trinity.fasta --single_best_only -O $data/transdecoder_data
 
 # Give the editing rights to the script (only the 1st time) : chmod +x transdecoder.sh
 # To execute the script even when the machine isn't running use "nohup" : nohup ./transdecoder.sh >& nohup.transdecoder &
