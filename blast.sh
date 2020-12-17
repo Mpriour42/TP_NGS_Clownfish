@@ -4,20 +4,22 @@
 
 # Create a working directory:
 data="/home/rstudio/data/mydatalocal/data"
-data_reference="$data/data_reference"??? Is that the stegastes_coding?
+data_reference="$data/Stegastes_genome"
 data_blast="$data/data_blast"
 data_Trinity="$data/SRA_data/SRA_data_trinity"
 out_blast="$data/data_blast/out_blast"
 db="$data_blast/Spartitus_db"
-data_transdecoder="$data/data_transdecoder"
+data_transdecoder="$data/transdecoder_data"
 mkdir -p $db
 mkdir -p $data_blast
 mkdir -p $out_blast
 cd $data_blast
 
+# Dezipper le génome de stegastes partitus: 
+
 # On cherche à savoir pour chaque transcrit à quel gène il correspond
 # Build reference database. On transforme nos data en une database que blast peut gérer:
-makeblastdb -dbtype nucl -in $data_reference/spartitus_coding_format.fa -out $db
+makeblastdb -dbtype nucl -in $data_reference/stegastes_coding_renamed.fa -out $db
 
 # Blast fasta against the ref database. On blaste nos données de transdecoder sur la base créée avant.
 #Le fichier Trinity a été renommé avec la commande :    awk '{print $1}' Trinity.fasta.transdecoder.cds > Trinity.fasta.transdecoder.rename.cds

@@ -79,7 +79,10 @@ ggplot(data = as.data.frame(resLFC),mapping = aes(x = log2FoldChange,
   theme_bw()+theme(legend.position='none')
 
 # Liste des 10 gènes les plus exprimés
-resLFC[order(resLFC$padj),]
-resLFC[is.na(resLFC$pajd),"pajd"] <- 1
+resLFC[is.na(resLFC$padj),"padj"] <- 1
 top_DE_genes <- resLFC[resLFC$padj<1e-2 & abs(resLFC$log2FoldChange)>2,]
-# abs() function computes the absolute value of numeric data
+print (top_DE_genes[0:10,])
+
+top_DE_genes_order <- top_DE_genes[order(top_DE_genes$padj),]
+# On met dans l'ordre le tableau top_DE_genes qu'on stocke dans un nouveau tableau top_DE_genes_order
+print (top_DE_genes_order[0:10,])
