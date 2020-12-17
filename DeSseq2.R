@@ -64,13 +64,12 @@ ggplot(data = as.data.frame(resLFC),mapping = aes(x=log10(baseMean),
 # colour.de pour sélectionner d'autre couleurs
 
 # VOLCANOPLOT
-ggplot(data = as.data.frame(resLFC),mapping = aes(x=log10(baseMean),
-                                                  y = log2FoldChange,
+ggplot(data = as.data.frame(resLFC),mapping = aes(x = log2FoldChange,
+                                                  y = -log10(padj),
                                                   color=padj<0.05,
-                                                  size=padj<0.05,
                                                   shape=padj<0.05,
-                                                  alpha=padj<0.05,
                                                   fill=padj<0.05))+
+                                              
   geom_point() + 
   scale_color_manual(values=c("#999999","#cc8167"))+
   scale_size_manual(values=c(0.1,1))+
