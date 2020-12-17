@@ -38,6 +38,44 @@ dds$condition <- relevel(dds$condition, ref = "white")
 # on donne une référence (controle/traitement), au pif: écailles blanches donc nos résultats seront à intérpreter par rapport au blanc
 dds <- DESeq(dds)
 # commande DESeq
+resultsNames(dds)
+resLFC <- lfcShrink(dds, coef="condition_orange_vs_white", type="apeglm")
+# resLFC <- results(dds) : la fonction result fait la même chose que lfcShrink mais n'ajuste pas la distorsion liée aux petits counts
+# head(resLFC) pour afficher tableau
+# la fonction result permet de générer le tableau de résultats
 
-# Pour exécuter la ligne, se placer à la fin et faire ctrl+entrée
+library(ggplot2)
+# MAPLOT
+ggplot(data = as.data.frame(resLFC),mapping = aes(x=log10(baseMean),
+                                                  y = log2FoldChange,
+                                                  color=padj<0.05,
+                                                  size=padj<0.05,
+                                                  shape=padj<0.05,
+                                                  alpha=padj<0.05,
+                                                  fill=padj<0.05))+
+  geom_point() + 
+  scale_color_manual(values=c("#999999","#cc8167"))+
+  scale_size_manual(values=c(0.1,1))+
+  scale_alpha_manual(values=c(0.5,1))+
+  scale_shape_manual(values=c(21,21))+
+  scale_fill_manual(values=c("#999999","#05100e"))+
+  theme_bw()+theme(legend.position='none')
+# dim(resLFC[is.na(resLFC$padj),]) pour savoir combien on basemean=na
+# colour.de pour sélectionner d'autre couleurs
+
+# VOLCANOPLOT
+ggplot(data = as.data.frame(resLFC),mapping = aes(x=log10(baseMean),
+                                                  y = log2FoldChange,
+                                                  color=padj<0.05,
+                                                  size=padj<0.05,
+                                                  shape=padj<0.05,
+                                                  alpha=padj<0.05,
+                                                  fill=padj<0.05))+
+  geom_point() + 
+  scale_color_manual(values=c("#999999","#cc8167"))+
+  scale_size_manual(values=c(0.1,1))+
+  scale_alpha_manual(values=c(0.5,1))+
+  scale_shape_manual(values=c(21,21))+
+  scale_fill_manual(values=c("#999999","#05100e"))+
+  theme_bw()+theme(legend.position='none')
 
