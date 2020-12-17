@@ -86,3 +86,7 @@ print (top_DE_genes[0:10,])
 top_DE_genes_order <- top_DE_genes[order(top_DE_genes$padj),]
 # On met dans l'ordre le tableau top_DE_genes qu'on stocke dans un nouveau tableau top_DE_genes_order
 print (top_DE_genes_order[0:10,])
+
+# Last graph : ACP
+rld <- rlog(dds, blind=FALSE)
+plotPCA(rld, intgroup=c("condition"))

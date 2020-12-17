@@ -60,4 +60,4 @@ For each skin color (orange and white), 3 individuals have been sampled: 3x2 = 6
 
 Tuto DESeq: https://www.bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html
 
-http://www.metagenomics.wiki/tools/blast/blastn-output-format-6
+To understand columns in blast table: http://www.metagenomics.wiki/tools/blast/blastn-output-format-6
