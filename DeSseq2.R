@@ -1,4 +1,4 @@
-#DE analysis:
+# DE analysis:
 
 # libraries:
 library("tximport")
@@ -21,8 +21,8 @@ names(files) <- samples$run
 # Data frame to know association gene transcript:
 tx2gene <- read.table(file = "/home/rstudio/data/mydatalocal/data/SRA_data/SRA_data_trinity/Trinity.fasta.gene_trans_map",
                               header = FALSE,sep ="\t",col.names = c("geneid","txname"))[,c(2,1)]
-# head(tx2gene) pour afficher première colonnes du tableau
-#[,c(2,1)]permet d'inverser les deux colonnes
+# head(tx2gene) pour afficher premières colonnes du tableau
+# [,c(2,1)] ermet d'inverser les deux colonnes
 
 # On importe les données qu'on stocke dans une variable txi
 txi <- tximport(files,type="salmon",tx2gene=tx2gene)
@@ -78,3 +78,8 @@ ggplot(data = as.data.frame(resLFC),mapping = aes(x = log2FoldChange,
   scale_fill_manual(values=c("#999999","#05100e"))+
   theme_bw()+theme(legend.position='none')
 
+# Liste des 10 gènes les plus exprimés
+resLFC[order(resLFC$padj),]
+resLFC[is.na(resLFC$pajd),"pajd"] <- 1
+top_DE_genes <- resLFC[resLFC$padj<1e-2 & abs(resLFC$log2FoldChange)>2,]
+# abs() function computes the absolute value of numeric data
