@@ -93,13 +93,13 @@ For each skin color (orange and white), 3 individuals have been sampled: 3x2 = 6
   * The Maplot below shows the intensity of the signal according to the differential expression for each gene:
   ![maplot](maplot.PNG)
   
-  The genes differentially expressed have a very high or very low log2(foldchange).Note that the foldchange is not independant from the basemean: the little counts artificially increase the foldchange. The function `lfcShrink`helps fix this. 
+    The genes differentially expressed have a very high or very low log2(foldchange).Note that the foldchange is not independant from the basemean: the little counts artificially increase the foldchange. The function `lfcShrink`helps fix this. 
   
   
   * Another representation is the Volcanoplot, that shows the p-value adjusted as a function of the log2(foldchange).
   ![volcanoplot](volcanoplot.PNG)
   
-  The genes differentially expressed have a higher p-adj. When the foldchange is negative the genes are underexpressed compared to white skin, when the foldchange is positive the genes are overexpressed compared to white skin.
+    The genes differentially expressed have a higher p-adj. When the foldchange is negative the genes are underexpressed compared to white skin, when the foldchange is positive the genes are overexpressed compared to white skin.
 
   * A principal component analysis allows to visualize the separation between white and orange genes: 
   ![ACP](ACP.PNG)
