@@ -62,11 +62,12 @@ For each skin color (orange and white), 3 individuals have been sampled: 3x2 = 6
 Rename Transdecoder's output files before the blast with the line:
 `awk '{print $1}' Trinity.fasta.transdecoder cds > rename.cds`
 
-  * **Detect the homologies between our transcripts (coding sequences of _Amphiprion ocellaris_) and references genes (genome of _Stegastes partitus_) using BLAST** See the script `blast.sh`. 
-    See the image below for an example of blast output:
+  * **Detect the homologies between our transcripts (coding sequences of _Amphiprion ocellaris_) and references genes (genome of _Stegastes partitus_) using BLAST.** See the script `blast.sh`. 
+    
+  See the image below for an example of blast output:
   ![blast_file](blast_file.PNG)
   
-  The first column indicates the name of the trinity transcrit and the second column the corresponding sequence in the reference genome. The Blast e-value, indicated in the 9th column, is the number of expected hits of similar quality (score) that could be found just by chance. The smaller the e-value, the better the match. The last column indicates the bit score, the higher the bit-score, the better the sequence similarity. To understand columns in blast table more precisely, see: http://www.metagenomics.wiki/tools/blast/blastn-output-format-6. 
+  The first column indicates the name of the trinity transcrit and the second column the corresponding sequence in the reference genome. The blast e-value, indicated in the 9th column, is the number of expected hits of similar quality (score) that could be found just by chance. The smaller the e-value, the better the match. The last column indicates the bit score, the higher the bit-score, the better the sequence similarity. To understand columns in blast table more precisely, see: http://www.metagenomics.wiki/tools/blast/blastn-output-format-6. 
 
 The command `cut -f1 blast |sort |uniq |wc -l` allows to see how many hit the blast found. 
   
@@ -75,7 +76,6 @@ The command `cut -f1 blast |sort |uniq |wc -l` allows to see how many hit the bl
 
 Tuto DESeq: https://www.bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html
 
-  ![table_differential_expression](table_differential_expression.png)
   ![top_10_genes_most_differentially_expressed](top_10_genes_most_differentially_expressed.PNG)
   ![maplot](maplot.PNG)
   ![volcanoplot](volcanoplot.PNG)
