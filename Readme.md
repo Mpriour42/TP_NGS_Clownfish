@@ -44,7 +44,7 @@ For each skin color (orange and white), 3 individuals have been sampled: 3x2 = 6
 
 
 ### 3) Transcript expression quantification
-  * **For each transcript, we determine with SALMON whether it is more express in white skin or orange skin**. See the script `salmon.sh`. To get to know how to use salmon, see the page: https://salmon.readthedocs.io/en/latest/salmon.html. Based on the assumption that the more reads a gene has, the more expressed he is, Salmon index the transcriptom from our fasta file (output of Trinity) and then quantify the expression of the transcripts from the index and fastq files. 
+  * **For each transcript, we determine with SALMON whether it is more express in white skin or orange skin**. See the script `salmon.sh`. To get to know how to use salmon, see the page: https://salmon.readthedocs.io/en/latest/salmon.html. Based on the assumption that the more reads a gene has, the more expressed he is, Salmon index the transcriptom from our fasta files (output of Trinity) and then quantify the expression of the transcripts from the index and fastq files. 
   
     See the image below for an example of salmon quantification table:
   ![quant_salmon_file](quant_salmon_file.PNG)
