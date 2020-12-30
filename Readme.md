@@ -81,9 +81,13 @@ For each skin color (orange and white), 3 individuals have been sampled: 3x2 = 6
   ![top_10_genes_most_differentially_expressed](top_10_genes_most_differentially_expressed.PNG)
   
   -> The BaseMean indicates the intensity of the signal (the bigger the basemean, the more the gene is expressed).
+  
   -> The log2(foldchange) indicates the ratio of variation between the two conditions (orange skin/white skin). The log2 transforms the fold change so that a log2(foldchange) = 0 means the gene is expressed similarly in the two skin types. Compared to the white skin condition, the gene is underexpressed if log2(foldchange) < 0 and overexpressed if log2(foldchange) > 0.
+  
   -> The lfcSE is the standard variation of the log2(foldchange).
+  
   -> Stat indicates the statitic of the test.
+  
   -> P-value indicates the p-value of the test and P-ajd indicates the p-value adjustated with the false discovery rate (FDR). FDR is a DESeq tool that corrects the rate of type I errors in null hypothesis testing when conducting multiple comparisons. FDR is designed to control for the expected proportion of "discoveries" (rejected null hypotheses) that are false (incorrect rejections of the null). Typically, FDR of 0.1 means that there is a chance that 10% of the genes are not false positive, i.e. if 100 genes are differentially expressed, then about 10 genes are false positive. Basically, it is calculated this way: FDR = (area of H0)/(area of H0 + H1). This analyses was conducted with FDR = 0.05.
   
   * The Maplot below shows the intensity of the signal according to the differential expression for each gene:
