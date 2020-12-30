@@ -7,6 +7,7 @@ Readme du projet NGS Marthe
 
 ## Problem of interest: 
 Compared to mammals that only have one pigment cell type (melanocytes), actinopterygians fishes harbor at least eight types of pigment cells (melanophores, iridophores, xanthophores, ect.). Our study focus on the clownfish _Amphiprion ocellaris_, which exhibits a specific color pattern of vertical white bars alternate with orange bars. We conduct a transcriptomic analysis of the fish skin in order to determine the genetic basis of this pattern and the type of pigment cells implicated in the white tissue (iridophores or leucophores). The presence of the gene _saiyan_ would potentially inform on the presence of iridophores in white skin. 
+
 Reference paper: Salis, P, Lorin, T, Lewis, V, et al. Developmental and comparative transcriptomic identification of iridophore contribution to white barring in clownfish. _Pigment Cell Melanoma Res._ 2019; 32: 391– 402. https://doi.org/10.1111/pcmr.12766
 
 ## Data-set: 
