@@ -72,7 +72,8 @@ Rename Transdecoder's output files before the blast with the line:
     The command `cut -f1 blast |sort |uniq |wc -l` allows to see how many hit the blast found. 
   
 ### 5) Differential expression analysis
-  DeSseq2.R
+
+  * With Salmon, we quantified the number of reads for each transcript on the six samples, which means now we have three values for each read: 3 values per transcript on white skin and 3 values per transcript on orange skin. Using the DEseq tool, we'll analyse statistically the differential expression. See the script `DeSseq2.R`. 
 
 Tuto DESeq: https://www.bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html
 
