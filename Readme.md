@@ -35,7 +35,7 @@ For each skin color (orange and white), 3 individuals have been sampled: 3x2 = 6
 
 
 ### 2) Data assembly
-  * **Assemby of the reads using TRINITY**. See the script `trinity.sh`. The reads are then assembled into a FASTA file. To get to know how to use trinity, see the page: https://github.com/trinityrnaseq/trinityrnaseq/wiki/Running-Trinity. Basically, Trinity combines three modules: Inchworm, Chrysalis and Butterfly, that together assemble reads in linear sequences, then make a graph and distribute the reads between clusters for each gene, and finally reconstruct isoforms and separate paralogs.
+  * **Assemby of the reads using TRINITY**. See the script `trinity.sh`. The reads are then assembled into a FASTA file. To get to know how to use trinity, see the page: https://github.com/trinityrnaseq/trinityrnaseq/wiki/Running-Trinity. Basically, Trinity combines three modules: Inchworm, Chrysalis and Butterfly, that together assemble reads in linear sequences, then make a graph and distribute the reads between clusters for each gene, and finally reconstruct isoforms and separate paralogs. One should use the `nohup`command to run the script because Trinity can take long.
   
     See the image below for an example of how a fasta file looks:
   ![fasta_example](fasta_example.PNG)
@@ -55,24 +55,31 @@ For each skin color (orange and white), 3 individuals have been sampled: 3x2 = 6
     The last column indicates the number of reads associated with the transcript.
   
 ### 4) Data annotation
-  * **Get a genome of reference**  script get_stegastes pour avoir le génome le plus proche pour le blast + rename sequences
+  * **Get a genome of reference**: downloading of the genome of _Stegastes partitus_ that was the closest sequenced genome of the clownfish at the time of our paper (Salis et al., 2019). See the script `get_stegastes.sh`. The script `Rename_stegastes.awk` renames the downloaded sequences (to execute this script, use the command `awk`. The command `gunzip`followed by the file name unzip the downloaded genome. 
   
-  wget -O data_reference/spartitus_coding.fa.gz http://ftp.ensembl.org/pub/release-102/fasta/stegastes_partitus/cds/Stegastes_partitus.Stegastes_partitus-1.0.2.cds.all.fa.gz
- 
-  * **Recover proteomic data from our transcripts with TRANSDECODER**, as coding regions are the most conserved sequences accross species and thus are already associated to a known function. See the script `transdecoder.sh`. To get to know how to use TansDecoder, see the page: https://github.com/TransDecoder/TransDecoder/wiki
-  
-  Rename Transdecoder's output files before the blast with the line:
-  awk '{print $1}' Trinity.fasta.transdecoder cds > rename.cds
-  
+  * **Recover proteomic data from our transcripts with TRANSDECODER**, as coding regions are the most conserved sequences accross species and thus are already associated to a known function. See the script `transdecoder.sh`. To get to know how to use TansDecoder, see the page: https://github.com/TransDecoder/TransDecoder/wiki.
+Rename Transdecoder's output files before the blast with the line:
+`awk '{print $1}' Trinity.fasta.transdecoder cds > rename.cds`
 
-
-  * **Detect the homologies between our transcripts (coding sequences of _Amphiprion ocellaris_) and references genes (genome of _Stegastes partitus_) using BLAST**
+  * **Detect the homologies between our transcripts (coding sequences of _Amphiprion ocellaris_) and references genes (genome of _Stegastes partitus_) using BLAST** 
+See the script `blast.sh`. To understand columns in blast table: http://www.metagenomics.wiki/tools/blast/blastn-output-format-6. 
+    See the image below for an example of blast output:
+  ![](.PNG)
+  
+  The command `cut -f1 blast |sort |uniq |wc -l`to see how many hit the blast found. 
   
   * **Script to create a csv annotation table**
-To understand columns in blast table: http://www.metagenomics.wiki/tools/blast/blastn-output-format-6
+
   
 ### 5) Differential expression analysis
   DeSseq2.R
 
 Tuto DESeq: https://www.bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html
 
+  ![table_differential_expression](table_differential_expression.PNG)
+  ![top_10_genes_most_differentially_expressed](top_10_genes_most_differentially_expressed.PNG)
+  ![maplot](maplot.PNG)
+  ![volcanoplot](volcanoplot.PNG)
+  ![ACP](ACP.PNG)
+  
+Interpretation /!\

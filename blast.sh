@@ -15,7 +15,7 @@ mkdir -p $data_blast
 mkdir -p $out_blast
 cd $data_blast
 
-# Dezipper le génome de stegastes partitus: 
+# Dezipper le génome de Stegastes partitus: gunzip stegastes_coding_renamed.fa
 
 # On cherche à savoir pour chaque transcrit à quel gène il correspond
 # Build reference database. On transforme nos data en une database que blast peut gérer:
