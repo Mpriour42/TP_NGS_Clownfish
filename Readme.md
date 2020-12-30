@@ -73,17 +73,21 @@ For each skin color (orange and white), 3 individuals have been sampled: 3x2 = 6
   
 ### 5) Differential expression analysis
 
-  Salmon quantified the number of reads for each transcript on the six samples, which means now we have three values for each read: 3 values per transcript on white skin and 3 values per transcript on orange skin. The **DESeq** tool allows a statistical analysis of the differential expression. See the script `DeSseq2.R`. To see how to use best DESeq, go to: https://www.bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html.
+  Salmon quantified the number of reads for each transcript on the six samples, which means now we have three values for each read: 3 values per transcript on white skin and 3 values per transcript on orange skin. The **DESeq** tool allows a statistical analysis of the differential expression. See the script `DeSseq2.R`. To learn how to use best DESeq, go to: https://www.bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html.
     
   For a more performant analyses, we withdraw poorly expressed genes that aren't characteristics of our analyses in order to reduce the number of tests. The white skin is settled as the reference in statistical tests. 
     
-  See the picture below for the the 10 genes that are the most differentially expressed between the white and orange skin:
+  See the picture below for the 10 transcripts that are the most differentially expressed between the white and orange skin:
   ![top_10_genes_most_differentially_expressed](top_10_genes_most_differentially_expressed.PNG)
   
   The BaseMean indicates the intensity of the signal (the bigger the basemean, the more the gene is expressed).
+  
   The log2(foldchange) indicates the ratio of variation between the two conditions (orange skin/white skin). The log2 transforms the fold change so that a log2(foldchange) = 0 means the gene is expressed similarly in the two skin types. Compared to the white skin condition, the gene is underexpressed if log2(foldchange) < 0 and overexpressed if log2(foldchange) > 0.
+  
   The lfcSE is the standard variation of the log2(foldchange).
+  
   Stat indicates the statitic of the test.
+  
   P-value indicates the p-value of the test and P-ajd indicates the p-value adjustated with the false discovery rate (FDR). FDR is a DESeq tool that corrects ...
   FDR = (area of H0)/(area of H0 + H1). 
     
