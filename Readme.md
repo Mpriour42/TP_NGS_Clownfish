@@ -58,6 +58,7 @@ For each skin color (orange and white), 3 individuals have been sampled: 3x2 = 6
   * **Get a genome of reference**: downloading of the genome of _Stegastes partitus_ that was the closest sequenced genome of the clownfish at the time of our paper (Salis et al., 2019). See the script `get_stegastes.sh`. The script `Rename_stegastes.awk` renames the downloaded sequences (to execute this script, use the command `awk`. The command `gunzip`followed by the file name unzip the downloaded genome. 
   
   * **Recover proteomic data from our transcripts with TRANSDECODER**, as coding regions are the most conserved sequences accross species and thus are already associated to a known function. See the script `transdecoder.sh`. To get to know how to use TansDecoder, see the page: https://github.com/TransDecoder/TransDecoder/wiki.
+
 Rename Transdecoder's output files before the blast with the line:
 `awk '{print $1}' Trinity.fasta.transdecoder cds > rename.cds`
 
@@ -66,7 +67,7 @@ See the script `blast.sh`. To understand columns in blast table: http://www.meta
     See the image below for an example of blast output:
   ![](.PNG)
   
-  The command `cut -f1 blast |sort |uniq |wc -l`to see how many hit the blast found. 
+The command `cut -f1 blast |sort |uniq |wc -l`to see how many hit the blast found. 
   
   * **Script to create a csv annotation table**
 
@@ -76,7 +77,7 @@ See the script `blast.sh`. To understand columns in blast table: http://www.meta
 
 Tuto DESeq: https://www.bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html
 
-  ![table_differential_expression](table_differential_expression.PNG)
+  ![table_differential_expression](table_differential_expression.png)
   ![top_10_genes_most_differentially_expressed](top_10_genes_most_differentially_expressed.PNG)
   ![maplot](maplot.PNG)
   ![volcanoplot](volcanoplot.PNG)
