@@ -55,7 +55,7 @@ For each skin color (orange and white), 3 individuals have been sampled: 3x2 = 6
     The last column indicates the number of reads associated with the transcript.
   
 ### 4) Data annotation
-  * **Get a genome of reference**: downloading of the genome of _Stegastes partitus_ that was the closest sequenced genome of the clownfish at the time of our paper (Salis et al., 2019). See the script `get_stegastes.sh`. The script `Rename_stegastes.awk` renames the downloaded sequences (to execute this script, use the command `awk`. The command `gunzip`followed by the file name unzip the downloaded genome. 
+  * **Get a genome of reference**: downloading of the genome of _Stegastes partitus_ that was the closest sequenced genome of the clownfish at the time of our paper (Salis et al., 2019). See the script `get_stegastes.sh`. The script `Rename_stegastes.awk` renames the downloaded sequences (to execute this script, use the command `awk`). The command `gunzip`followed by the file name unzip the downloaded genome. 
   
   * **Recover proteomic data from our transcripts with TRANSDECODER**, as coding regions are the most conserved sequences accross species and thus are already associated to a known function. See the script `transdecoder.sh`. To get to know how to use TansDecoder, see the page: https://github.com/TransDecoder/TransDecoder/wiki.
 
@@ -80,22 +80,31 @@ For each skin color (orange and white), 3 individuals have been sampled: 3x2 = 6
   See the picture below for the 10 transcripts that are the most differentially expressed between the white and orange skin:
   ![top_10_genes_most_differentially_expressed](top_10_genes_most_differentially_expressed.PNG)
   
-  The BaseMean indicates the intensity of the signal (the bigger the basemean, the more the gene is expressed).
+  - The BaseMean indicates the intensity of the signal (the bigger the basemean, the more the gene is expressed).
   
-  The log2(foldchange) indicates the ratio of variation between the two conditions (orange skin/white skin). The log2 transforms the fold change so that a log2(foldchange) = 0 means the gene is expressed similarly in the two skin types. Compared to the white skin condition, the gene is underexpressed if log2(foldchange) < 0 and overexpressed if log2(foldchange) > 0.
+  - The log2(foldchange) indicates the ratio of variation between the two conditions (orange skin/white skin). The log2 transforms the fold change so that a log2(foldchange) = 0 means the gene is expressed similarly in the two skin types. Compared to the white skin condition, the gene is underexpressed if log2(foldchange) < 0 and overexpressed if log2(foldchange) > 0.
   
-  The lfcSE is the standard variation of the log2(foldchange).
+  - The lfcSE is the standard variation of the log2(foldchange).
   
-  Stat indicates the statitic of the test.
+  - Stat indicates the statitic of the test.
   
-  P-value indicates the p-value of the test and P-ajd indicates the p-value adjustated with the false discovery rate (FDR). FDR is a DESeq tool that corrects ...
-  FDR = (area of H0)/(area of H0 + H1). 
-    
-    
+  - P-value indicates the p-value of the test and P-ajd indicates the p-value adjustated with the false discovery rate (FDR). FDR is a DESeq tool that corrects the rate of type I errors in null hypothesis testing when conducting multiple comparisons. FDR is designed to control for the expected proportion of "discoveries" (rejected null hypotheses) that are false (incorrect rejections of the null). Typically, FDR of 0.1 means that there is a chance that 10% of the genes are not false positive, i.e. if 100 genes are differentially expressed, then about 10 genes are false positive. Basically, it is calculated this way: FDR = (area of H0)/(area of H0 + H1). This analyses was conducted with FDR = ???
+  
+  * The Maplot below shows the intensity of the signal according to the differential expression for each gene:
   ![maplot](maplot.PNG)
+  
+  The genes differentially expressed have a very high or very low log2(foldchange).Note that the foldchange is not independant from the basemean: the little counts artificially increase the foldchange. The function `lfcShrink`helps fix this. 
+  
+  
+  * Another representation is the Volcanoplot, that shows the p-value adjusted as a function of the log2(foldchange).
   ![volcanoplot](volcanoplot.PNG)
+  
+  The genes differentially expressed have a higher p-adj. When the foldchange is negative the genes are underexpressed compared to white skin, when the foldchange is positive the genes are overexpressed compared to white skin.
+
+  * A principal component analysis allows to visualize the separation between white and orange genes: 
   ![ACP](ACP.PNG)
   
-Interpretation /!\
+  
+Interpretation /!\ + sortir la liste des 10 gènes les plus différentiellement exprimés (BLASTER GENES TABLEAU) et les placer sur volcano plot en fonction p-value
 
 ### Conclusion
