@@ -106,7 +106,8 @@ For each skin color (orange and white), 3 individuals have been sampled: 3x2 = 6
   
     It is interesting to note that the first component seems to separate individuals within a same skin color. This is probably due to our low sample size and genetic interindividual differences. 
 
-  * **Manual annotation of top differentially expressed genes and conclusion**
+  * **Manual annotation of top differentially expressed genes and conclusion:**
+  
     From our table with the 10 most differentially expressed genes (so the lower p-adj), we took the trinity transcript ID that we blasted to recover the corresponding Ensemble ID. Then, in the **ensembl.org** database, we found the corresponding name of the gene and manually placed them on the volcano plot according to their p-ajd. See the result obtained below: 
     
 ![genes_annotation](genes_annotation.png)
@@ -114,5 +115,6 @@ For each skin color (orange and white), 3 individuals have been sampled: 3x2 = 6
 (source: Vinciane Piveteau)
 
 To conclude, our results are consistent with the ones of the original study. Indeed, 7 of our 10 most differentially expressed genes are found in the paper's 10 most differentially expressed genes, including _Saiyan_, a gene of particular interest for the white pigmentation of the skin. 
+
 Interestingly, our analyses differ in some ways from the original study. For example, in the statistical analyses, we used the function `lfcShrink` whereas the authors used the function `results`. Moreover, some options used in our scripts may differ and updates of the softwares between the time the paper was written and December 2020 might explain slight differences. Finally, the annotated genome of _Amphiprion ocellaris_ is now available online, so one could avoid the step with dowloading the reference genome of _Stegastes partitus_. 
 
