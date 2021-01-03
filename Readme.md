@@ -121,7 +121,7 @@ SRR7591064/SRR7591065/SRR7591066/SRR7591067/SRR7591068/SRR7591069
 
 ### Conclusion
 
-  To conclude, our results are consistent with the ones of the original study. Indeed, 7 of our 10 most differentially expressed genes are found in the paper's 10 most differentially expressed genes, including _Saiyan_, a gene of particular interest for the white pigmentation of the skin. Moreover, we retrieved previously identified iridophore markers in our top 10 differentially expressed genes, including _Saiyan_, _ApoD1a_ and _gpnmb_, suggesting that the white skin in _Amphiprion ocellaris_ is due to iridophores.
+  To conclude, our results are consistent with the ones of the original study. Indeed, 7 of our 10 most differentially expressed genes are found in the paper's 10 most differentially expressed genes, including _Saiyan_, a gene of particular interest for the white pigmentation of the skin. Moreover, we retrieved previously identified iridophore markers in our top 10 differentially expressed genes, including _Saiyan_, _ApoD1a_ and _Gpnmb_, suggesting that the white skin in _Amphiprion ocellaris_ is due to iridophores.
 
   Interestingly, our analyses differ in some ways from the original study. For example, in the statistical analyses, we used the function `lfcShrink` whereas the authors used the function `results`. Moreover, some options used in our scripts may differ and updates of the softwares between the time the paper was written and December 2020 might explain slight differences. Finally, the annotated genome of _Amphiprion ocellaris_ is now available online, so one could avoid the step with dowloading the reference genome of _Stegastes partitus_. 
 
