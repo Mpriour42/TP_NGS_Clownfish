@@ -99,7 +99,7 @@ For each skin color (orange and white), 3 individuals have been sampled: 3x2 = 6
   * Another representation is the Volcanoplot, that shows the p-value adjusted as a function of the log2(foldchange).
   ![volcanoplot](volcanoplot.PNG)
   
-    The genes differentially expressed have a higher p-adj. When the foldchange is negative the genes are underexpressed compared to white skin, when the foldchange is positive the genes are overexpressed compared to white skin.
+    The genes differentially expressed have a higher -log10(p-adj). When the foldchange is negative the genes are underexpressed compared to white skin, when the foldchange is positive the genes are overexpressed compared to white skin.
 
   * A principal component analysis allows to visualize the separation between samples according to the skin color: 
   ![ACP](ACP.PNG)
