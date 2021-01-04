@@ -1,5 +1,7 @@
 #! /bin/bash
 
+## This script uses Transdecoder to recover coding sequences out of our transcripts
+
 data="/home/rstudio/data/mydatalocal/data"
 cd $data
 
@@ -7,16 +9,15 @@ cd $data
 mkdir -p transdecoder_data
 cd transdecoder_data
 
-#Attention, transdecoder generates files in the current directory
+# Pay attention that transdecoder generates files in the current directory
 # Launch Transdecoder
-# Work in 2 or 3 steps (the second is facultative)
 
-# Step 1: extract the long open reading frames (TransDecoder.LongOrfs)
+# Step 1: extracts the long open reading frames (TransDecoder.LongOrfs)
 TransDecoder.LongOrfs -t $data/SRA_data/SRA_data_trinity/Trinity.fasta -S --gene_trans_map $data/SRA_data/SRA_data_trinity/Trinity.fasta.gene_trans_map -O $data/transdecoder_data
 
-# Step 2: blast to identify peptides with homology to known proteins (optionnal) 
+# Step 2: blasts to identify peptides with homology to known proteins (optionnal) 
 
-# Step 3: predict the likely coding regions (TransDecoder.Predict)
+# Step 3: predicts the likely coding regions (TransDecoder.Predict)
 TransDecoder.Predict -t $data/SRA_data/SRA_data_trinity/Trinity.fasta --single_best_only -O $data/transdecoder_data
 
 # Give the editing rights to the script (only the 1st time) : chmod +x transdecoder.sh

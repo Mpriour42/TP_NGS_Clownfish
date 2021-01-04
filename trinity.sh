@@ -11,6 +11,9 @@ mkdir -p SRA_data_trinity
 
 FASTQ=$(ls $SRA_data/*.fastq |paste -s -d, -)
 
+# echo "$FASTQ" to check if $FASTQ is composed of a list of fastq files path as expected
+
+# Run Trinity
 Trinity --seqType fq --SS_lib_type R --max_memory 50G --CPU 16 --single $FASTQ \
 --normalize_by_read_set --output /home/rstudio/data/mydatalocal/data/SRA_data/SRA_data_trinity/
 

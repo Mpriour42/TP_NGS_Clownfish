@@ -1,4 +1,4 @@
-# DE analysis:
+## Differential expression statistical analysis:
 
 # libraries:
 library("tximport")
@@ -13,7 +13,7 @@ dir <- "/home/rstudio/data/mydatalocal/data/SRA_data/data_salmon"
 samp.name <- c("SRR7591064","SRR7591065","SRR7591066","SRR7591067","SRR7591068","SRR7591069")
 samp.type <- c("orange","white","orange","orange","white","white")
 samples <- data.frame(run=samp.name,condition=samp.type)
-# samples pour voir le tableau
+# Use "samples" to see the table
 
 files <- file.path(dir, samples$run, "quant.sf")
 names(files) <- samples$run
@@ -21,28 +21,30 @@ names(files) <- samples$run
 # Data frame to know association gene transcript:
 tx2gene <- read.table(file = "/home/rstudio/data/mydatalocal/data/SRA_data/SRA_data_trinity/Trinity.fasta.gene_trans_map",
                               header = FALSE,sep ="\t",col.names = c("geneid","txname"))[,c(2,1)]
-# head(tx2gene) pour afficher premières colonnes du tableau
-# [,c(2,1)] ermet d'inverser les deux colonnes
+# head(tx2gene) to visualize the first columns of the table
+# [,c(2,1)] inverts the two columns
 
-# On importe les données qu'on stocke dans une variable txi
+# Import the data and store them in a txi variable:
 txi <- tximport(files,type="salmon",tx2gene=tx2gene)
-# head(txi$counts) pour afficher la table de comptes qui sert de base à DeSseq2
+# head(txi$counts) to visualize the counts table (base of DeSeq2)
 
 # DE analysis:
 ddsTxi <- DESeqDataSetFromTximport(txi, colData = samples, design = ~ condition)
-# ~ condition: en fonction de la condition, ici la couleur
+# ~ condition: the condition here is the skin color
 keep <- rowSums(counts(ddsTxi)) >= 10
 dds <- ddsTxi[keep,]
-# la somme des valeurs de chaque ligne doit être supérieure ou égale à 10 pour poursuivre l'analyse: on supprime les gènes qui ont moins de 10 counts, gènes très très très peu exprimés
+# The sum of the values of each line must be > or = to 10 for the analyses to go on: we delete the genes that have less than 10 counts (very low expressed genes)
 dds$condition <- relevel(dds$condition, ref = "white")
-# on donne une référence (controle/traitement), au pif: écailles blanches donc nos résultats seront à intérpreter par rapport au blanc
+# The reference given here is white skin ("control condition" --> white vs. "treatment condition" --> orange)
+
+# Run DESeq
 dds <- DESeq(dds)
-# commande DESeq
+
 resultsNames(dds)
 resLFC <- lfcShrink(dds, coef="condition_orange_vs_white", type="apeglm")
-# resLFC <- results(dds) : la fonction result fait la même chose que lfcShrink mais n'ajuste pas la distorsion liée aux petits counts
-# head(resLFC) pour afficher tableau
-# la fonction result permet de générer le tableau de résultats
+# resLFC <- results(dds) : both functions "result" and "lfcShrink" are doing the same thing but lfcShrink adjust the distorsion due to little counts
+# Use head(resLFC) to visualize the table
+# The result function generates the tables of results
 
 library(ggplot2)
 # MAPLOT
@@ -60,8 +62,8 @@ ggplot(data = as.data.frame(resLFC),mapping = aes(x=log10(baseMean),
   scale_shape_manual(values=c(21,21))+
   scale_fill_manual(values=c("#999999","#05100e"))+
   theme_bw()+theme(legend.position='none')
-# dim(resLFC[is.na(resLFC$padj),]) pour savoir combien on basemean=na
-# colour.de pour sélectionner d'autre couleurs
+# Use dim(resLFC[is.na(resLFC$padj),]) to know how many basemean=na
+# colour.de is a website to select other colors for the plot
 
 # VOLCANOPLOT
 ggplot(data = as.data.frame(resLFC),mapping = aes(x = log2FoldChange,
@@ -78,15 +80,15 @@ ggplot(data = as.data.frame(resLFC),mapping = aes(x = log2FoldChange,
   scale_fill_manual(values=c("#999999","#05100e"))+
   theme_bw()+theme(legend.position='none')
 
-# Liste des 10 gènes les plus exprimés
+# List of the 10 most differentially expressed genes:
 resLFC[is.na(resLFC$padj),"padj"] <- 1
 top_DE_genes <- resLFC[resLFC$padj<1e-2 & abs(resLFC$log2FoldChange)>2,]
 print (top_DE_genes[0:10,])
 
 top_DE_genes_order <- top_DE_genes[order(top_DE_genes$padj),]
-# On met dans l'ordre le tableau top_DE_genes qu'on stocke dans un nouveau tableau top_DE_genes_order
+# We order the table top_DE_genes and store that in a new table called top_DE_genes_order
 print (top_DE_genes_order[0:10,])
 
-# Last graph : ACP
+# ACP
 rld <- rlog(dds, blind=FALSE)
 plotPCA(rld, intgroup=c("condition"))

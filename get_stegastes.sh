@@ -1,5 +1,7 @@
 #! /bin/bash
 
+## This script download the genome of Stegastes partitus 
+
 data=/home/rstudio/data/mydatalocal/data
 
 #wget dowload coding sequences of stegastes partisus from ensembl database

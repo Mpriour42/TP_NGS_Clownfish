@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Script inspiré de celui de Paul car absence pour raison médicale
+## This script was copied on Paul's due to a medical invalidity that day
 
 # Create a working directory:
 data="/home/rstudio/data/mydatalocal/data"
@@ -15,7 +15,7 @@ mkdir -p $data_blast
 mkdir -p $out_blast
 cd $data_blast
 
-# Dezipper le génome de Stegastes partitus: gunzip stegastes_coding_renamed.fa
+# To unzip Stegastes partitus genome: gunzip stegastes_coding_renamed.fa
 
 # On cherche à savoir pour chaque transcrit à quel gène il correspond
 # Build reference database. On transforme nos data en une database que blast peut gérer:

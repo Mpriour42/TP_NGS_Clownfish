@@ -1,6 +1,6 @@
 #!/bin/bash
 
-## This script use SALMON to determine for each transcripts assembled by TRINITY wheter it is more express in white skin or orange skin.
+## This script uses SALMON to determine for each transcripts assembled by TRINITY wheter it is more express in white skin or orange skin.
 
 # Create a working directory:
 SRA_data="/home/rstudio/data/mydatalocal/data/SRA_data"
@@ -21,6 +21,7 @@ do
 # Rename the SRR without .fastq
 NewName=$(basename -s .fastq $f)
 
+# Run Salmon
 salmon quant -l SR -r $f -p 16 -i $SRA_data/SRA_data_trinity/transcript_index \
 -o $SRA_data/data_salmon/$NewName --gcBias --validateMappings
 
