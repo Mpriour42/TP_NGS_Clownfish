@@ -49,7 +49,7 @@ SRR7591064/SRR7591065/SRR7591066/SRR7591067/SRR7591068/SRR7591069
 
 ### 3) Transcript expression quantification
   * **For each transcript, we determine with SALMON whether it is more express in white skin or orange skin**. See the script `salmon.sh`. To get to know how to use salmon, see the page: https://salmon.readthedocs.io/en/latest/salmon.html. Based on the assumption that the more reads a gene has, the more expressed he is, Salmon index the transcriptom from our fasta files (output of Trinity) and then quantify the expression of the transcripts from the index and fastq files. 
-  For the k-parameter, one should prefer k = 25, as it was shown to provide the best alignment, around 95% (not too stringent). 
+  The k size selected here will act as the minimum acceptable length for a valid match. Thus, a smaller value of k may slightly improve sensitivity. We used k = 25, that provided an alignment around 96% (not too stringent).
   
     See the image below for an example of salmon quantification table:
   ![quant_salmon_file](images/quant_salmon_file.PNG)
@@ -113,12 +113,14 @@ SRR7591064/SRR7591065/SRR7591066/SRR7591067/SRR7591068/SRR7591069
 
   * **Manual annotation of top differentially expressed genes:**
   
-    From our table with the 10 most differentially expressed genes (so the lower p-adj), we took the trinity transcript ID that we blasted to recover the corresponding Ensembl ID. To do this, one can use the command `grep`. Then, in the **ensembl.org** database, we found the corresponding name of the gene and manually placed them on the volcano plot according to their p-ajd. See the result obtained below: 
+    From our table with the 10 most differentially expressed genes (so the lower p-adj), we took the trinity transcript ID that we blasted to recover the corresponding Ensembl ID. To do this, one can use the command `grep`. However, due to an error in the script `Rename_stegastes.awk`, we observed mismatches between Ensembl ID and genes common names. Therefore, we searched in the **ensembl.org** database the Ensembl ID for our transcripts of interest and found the corresponding name of the genes. Then, we placed them manually on the volcano plot according to their p-ajd. See the result obtained below: 
     
 ![genes_annotation](images/genes_annotation.png)
 
 (source: Vinciane Piveteau)
 
+  For a padj < 1e-20, 30 genes were differentially expressed between the orange and the white skin (16 genes upregulated and 14 downregulated in orange skin compared to white skin). 
+  
 ### Conclusion
 
   To conclude, our results are consistent with the ones of the original study. Indeed, 7 of our 10 most differentially expressed genes are found in the paper's 10 most differentially expressed genes, including _saiyan_, a gene of particular interest for the white pigmentation of the skin. Moreover, we retrieved previously identified iridophore markers in our top 10 differentially expressed genes, including _saiyan_, _apoD1a_ and _gpnmb_, suggesting that the white skin in _Amphiprion ocellaris_ is due to iridophores.
