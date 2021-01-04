@@ -91,7 +91,7 @@ SRR7591064/SRR7591065/SRR7591066/SRR7591067/SRR7591068/SRR7591069
   
   -> The _lfcSE_ is the standard variation of the log2(foldchange).
   
-  -> _Stat_ indicates the statitic of the test.
+  -> _Stat_ indicates the statistic of the test, where H0 is the null hypothesis (no variation) and H1 the hypothesis where a gene is differentially expressed compared to white skin.
   
   -> _P-value_ indicates the p-value of the test and _P-ajd_ indicates the p-value adjustated with the false discovery rate (FDR). FDR is a DESeq tool that corrects the rate of type I errors in null hypothesis testing when conducting multiple comparisons. FDR is designed to control for the expected proportion of "discoveries" (rejected null hypotheses) that are false (incorrect rejections of the null). Typically, FDR of 0.1 means that there is a chance that 10% of the genes are not false positive, i.e. if 100 genes are differentially expressed, then about 10 genes are false positive. Basically, it is calculated this way: FDR = (area of H0)/(area of H0 + H1). This analyses was conducted with FDR = 0.05.
   
