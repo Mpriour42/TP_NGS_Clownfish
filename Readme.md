@@ -18,6 +18,9 @@ SRR7591064/SRR7591065/SRR7591066/SRR7591067/SRR7591068/SRR7591069
 
 ---
 ## Analyses steps:
+
+_Please note that further details on the parameters used in the following analyses are explicited in the scripts_
+
 ### 1) Raw RNA-seq data download. 
 
   * **Downloading the data from the NCBI database**. The reads are available on NCBI database, under BioProject PRJNA482393 and BioProject PRJNA482578. Our 6 samples of interest can be found from SRR7591064 to SRR7591069. See the script `RNAseq_data_download.sh`. We download fastq files stored in a SRA_data_folder.
@@ -109,7 +112,7 @@ SRR7591064/SRR7591065/SRR7591066/SRR7591067/SRR7591068/SRR7591069
   * A **principal component analysis** allows to visualize the separation between samples according to the skin color: 
   ![ACP](images/ACP.PNG)
   
-    It is interesting to note that the first component seems to separate individuals within a same skin color. This is probably due to our low sample size and genetic interindividual differences. 
+    It is interesting to note that the first component seems to separate individuals within a same skin color. This is probably due to our low sample size and genetic interindividual differences, as well as physiological conditions at the time of skin extraction. 
 
   * **Manual annotation of top differentially expressed genes:**
   
