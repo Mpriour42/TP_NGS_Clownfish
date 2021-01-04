@@ -22,7 +22,7 @@ SRR7591064/SRR7591065/SRR7591066/SRR7591067/SRR7591068/SRR7591069
 
   * **Downloading the data from the NCBI database**. The reads are available on NCBI database, under BioProject PRJNA482393 and BioProject PRJNA482578. Our 6 samples of interest can be found from SRR7591064 to SRR7591069. See the script `RNAseq_data_download.sh`. We download fastq files stored in a SRA_data_folder.
   See the image below for an example of how a fastq file looks:
-  ![fastq_example](fastq_example.PNG)
+  ![fastq_example](image/fastq_example.PNG)
   
     One read is four lines, with the first line carrying the name of the read, the second line carrying the genetic code, the third line is the name again and the fourth is the ASCII code that informs on the reliability of the sequencing associated to each nucleotide. The "/1" after the name of the read indicade that the single read is sequenced as anti-sense (reverse(R)).
 
