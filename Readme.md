@@ -22,7 +22,7 @@ SRR7591064/SRR7591065/SRR7591066/SRR7591067/SRR7591068/SRR7591069
 
   * **Downloading the data from the NCBI database**. The reads are available on NCBI database, under BioProject PRJNA482393 and BioProject PRJNA482578. Our 6 samples of interest can be found from SRR7591064 to SRR7591069. See the script `RNAseq_data_download.sh`. We download fastq files stored in a SRA_data_folder.
   See the image below for an example of how a fastq file looks:
-  ![fastq_example](image/fastq_example.PNG)
+  ![fastq_example](images/fastq_example.PNG)
   
     One read is four lines, with the first line carrying the name of the read, the second line carrying the genetic code, the third line is the name again and the fourth is the ASCII code that informs on the reliability of the sequencing associated to each nucleotide. The "/1" after the name of the read indicade that the single read is sequenced as anti-sense (reverse(R)).
 
@@ -31,10 +31,10 @@ SRR7591064/SRR7591065/SRR7591066/SRR7591067/SRR7591068/SRR7591069
     For each file we obtained the basic statistics, per base sequence quality, per sequence quality scores, per base sequence content, per sequence GC content, per base N content, sequence lenght distribution, sequence duplication levels, overrepresented sequences and adapter content. 
   See the image below for an example of basic statistics for one file:
   
-    ![basics_statistics](basics_statistics.PNG)
+    ![basics_statistics](images/basics_statistics.PNG)
 
   * **Assembly and comparison of all the FASTQC quality reports for all the sequences using MULTIQC function**. See the script `multiqc.sh`.The quality of the data is very good (see image below) so no need to clean them.
-  ![fastqc_per_sequence_quality_scores_plot](fastqc_per_sequence_quality_scores_plot.png)
+  ![fastqc_per_sequence_quality_scores_plot](images/fastqc_per_sequence_quality_scores_plot.png)
 
 
 ### 2) Data assembly
@@ -42,7 +42,7 @@ SRR7591064/SRR7591065/SRR7591066/SRR7591067/SRR7591068/SRR7591069
   Basically, Trinity combines three modules: Inchworm, Chrysalis and Butterfly, that together assemble reads in linear sequences, then make a graph and distribute the reads between clusters for each gene, and finally reconstruct isoforms and separate paralogs. One should use the `nohup` command to run the script because Trinity can take long.
   
     See the image below for an example of how a fasta file looks:
-  ![fasta_example](fasta_example.PNG)
+  ![fasta_example](images/fasta_example.PNG)
   
     The first line begin with ">" and indicate the name of the read, then follow the genetic code of the sequence. 
 
@@ -52,7 +52,7 @@ SRR7591064/SRR7591065/SRR7591066/SRR7591067/SRR7591068/SRR7591069
   For the k-parameter, one should prefer k = 25, as it was shown to provide the best alignment, around 95% (not too stringent). 
   
     See the image below for an example of salmon quantification table:
-  ![quant_salmon_file](quant_salmon_file.PNG)
+  ![quant_salmon_file](images/quant_salmon_file.PNG)
   
     The first column indicates the name of the transcript assemble by Trinity.
     The second column indicates the lenght of the transcript and the third column the effective lenght.
@@ -70,7 +70,7 @@ SRR7591064/SRR7591065/SRR7591066/SRR7591067/SRR7591068/SRR7591069
   * **Detect the homologies between our transcripts (coding sequences of _Amphiprion ocellaris_) and references genes (genome of _Stegastes partitus_) using BLAST.** See the script `blast.sh`. 
     
     See the image below for an example of blast output:
-  ![blast_file](blast_file.PNG)
+  ![blast_file](images/blast_file.PNG)
   
     The first column indicates the name of the trinity transcrit and the second column the corresponding sequence in the reference genome. The blast e-value, indicated in the 9th column, is the number of expected hits of similar quality (score) that could be found just by chance. The smaller the e-value, the better the match. The last column indicates the bit score, the higher the bit-score, the better the sequence similarity. To understand columns in blast table more precisely, see: http://www.metagenomics.wiki/tools/blast/blastn-output-format-6. 
 
@@ -83,7 +83,7 @@ SRR7591064/SRR7591065/SRR7591066/SRR7591067/SRR7591068/SRR7591069
   For a more powerful analyses, we withdraw poorly expressed genes that aren't characteristics of our analyses in order to reduce the number of tests. The white skin is settled as the reference in statistical tests. 
     
   See the picture below for the 10 transcripts that are the most differentially expressed between the white and orange skin:
-  ![top_10_genes_most_differentially_expressed](top_10_genes_most_differentially_expressed.PNG)
+  ![top_10_genes_most_differentially_expressed](images/top_10_genes_most_differentially_expressed.PNG)
   
   -> The _BaseMean_ indicates the intensity of the signal (the bigger the basemean, the more the gene is expressed).
   
@@ -96,18 +96,18 @@ SRR7591064/SRR7591065/SRR7591066/SRR7591067/SRR7591068/SRR7591069
   -> _P-value_ indicates the p-value of the test and _P-ajd_ indicates the p-value adjustated with the false discovery rate (FDR). FDR is a DESeq tool that corrects the rate of type I errors in null hypothesis testing when conducting multiple comparisons. FDR is designed to control for the expected proportion of "discoveries" (rejected null hypotheses) that are false (incorrect rejections of the null). Typically, FDR of 0.1 means that there is a chance that 10% of the genes are not false positive, i.e. if 100 genes are differentially expressed, then about 10 genes are false positive. Basically, it is calculated this way: FDR = (area of H0)/(area of H0 + H1). This analyses was conducted with FDR = 0.05.
   
   * The **Maplot** below shows the intensity of the signal according to the differential expression for each gene:
-  ![maplot](maplot.PNG)
+  ![maplot](images/maplot.PNG)
   
     The genes differentially expressed have a very high or very low log2(foldchange). Note that the foldchange is not independant from the basemean: the little counts artificially increase the foldchange. The function `lfcShrink` helps fix this. 
   
   
   * Another representation is the **Volcanoplot**, that shows the p-value adjusted as a function of the log2(foldchange).
-  ![volcanoplot](volcanoplot.PNG)
+  ![volcanoplot](images/volcanoplot.PNG)
   
     The genes differentially expressed have a higher -log10(p-adj). When the foldchange is negative the genes are underexpressed compared to white skin, when the foldchange is positive the genes are overexpressed compared to white skin.
 
   * A **principal component analysis** allows to visualize the separation between samples according to the skin color: 
-  ![ACP](ACP.PNG)
+  ![ACP](images/ACP.PNG)
   
     It is interesting to note that the first component seems to separate individuals within a same skin color. This is probably due to our low sample size and genetic interindividual differences. 
 
@@ -115,7 +115,7 @@ SRR7591064/SRR7591065/SRR7591066/SRR7591067/SRR7591068/SRR7591069
   
     From our table with the 10 most differentially expressed genes (so the lower p-adj), we took the trinity transcript ID that we blasted to recover the corresponding Ensembl ID. To do this, one can use the command `grep`. Then, in the **ensembl.org** database, we found the corresponding name of the gene and manually placed them on the volcano plot according to their p-ajd. See the result obtained below: 
     
-![genes_annotation](genes_annotation.png)
+![genes_annotation](images/genes_annotation.png)
 
 (source: Vinciane Piveteau)
 
